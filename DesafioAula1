@@ -1,0 +1,106 @@
+/*HTML e CSS Desenvolvido utilizando Gemini 1.5 Pro com o objetivo de informar que o site encontra-se em desenvolvimento*/
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica Digesto - Em Construção</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Clínica Digesto</h1>
+        </header>
+
+        <main>
+            <div class="construcao">
+                <h2>Em Construção!</h2>
+                <p>Estamos trabalhando para oferecer a você a melhor experiência online.</p>
+                <p>Enquanto isso, entre em contato conosco:</p>
+                <ul class="contato">
+                    <li>Telefone: 31 98332-4403</li>
+                    <li>E-mail: clinicadigesto@gmail.com</li>
+                    <li>Instagram: <a href="https://www.instagram.com/clinicadigesto/" target="_blank">@clinicadigesto</a></li>
+                </ul>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 Clínica Digesto. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+</body>
+</html>
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+h1 {
+    font-size: 32px;
+    color: #333;
+}
+
+main {
+    padding: 20px;
+}
+
+.construcao {
+    text-align: center;
+}
+
+h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #666;
+}
+
+.contato {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.contato li {
+    margin-bottom: 10px;
+}
+
+.contato li a {
+    color: #333;
+    text-decoration: none;
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+}
+
+footer p {
+    font-size: 14px;
+    color: #666;
+}
+
