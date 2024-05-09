@@ -1,0 +1,74 @@
+/*
+Codigo SQL gerado pela IA Gemini para cumprir o desafio da Aula 2 da ImersaoIA:
+
+  "Use a técnica de Few-shot Chain-of-Thought para um problema da sua vida real"
+
+Prompt: Dados os seguintes exemplos:
+Exemplo 1: Convênio (CodConv, NomeConv)
+create table convenio(
+codConv int not null,
+nomeConv varchar,
+constraint PKCodConv primary key (codConv)
+)
+
+Exemplo 2: Paciente (CodPac, NomePac, Endereco, #CodConv)
+create table  paciente(
+codPac int not null,
+nomePac varchar not null,
+Endereco varchar, codConv int,
+constraint PKCodPac primary key(CodPac),
+constraint FKCodConv foreign Key(CodConv) references convenio,
+constraint UKPaciente unique(nomePac))
+
+Crie as tabelas abaixo, sabendo-se que:
+- Ao se criar a tabela Medico,  definir que ao se excluir registros em Especialidade, esta exclusão seja feita em Medico em
+cascata e ao alterar registro em Especialidade, seu correspondentes em Medico recebem Null.
+- A DataHora da consulta não pode ser maior que a data atual (now()).
+- A DataHora da consulta deve ser inicializada com a datahora corrente.
+
+Medicamento (CodMedic, NomeMedic)
+Especialidade (CodEspec, NomeEspec)
+Medico (CodMedico, NomeMed, #CodEspec)
+Consulta (#CodPac, DataHora, #CodMed, Diagnóstico, Preco, Pago)
+Receita (# (CodPac, DataHora), #CodMedic, Qtde)
+*/
+
+CREATE TABLE Medicamento (
+    CodMedic INT NOT NULL PRIMARY KEY,
+    NomeMedic VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Especialidade (
+    CodEspec INT NOT NULL PRIMARY KEY,
+    NomeEspec VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Medico (
+    CodMedico INT NOT NULL PRIMARY KEY,
+    NomeMed VARCHAR(255) NOT NULL,
+    CodEspec INT REFERENCES Especialidade(CodEspec) 
+        ON DELETE CASCADE ON UPDATE SET NULL 
+);
+
+CREATE TABLE Consulta (
+    CodPac INT,
+    DataHora DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL 
+        CHECK (DataHora <= CURRENT_TIMESTAMP),
+    CodMed INT,
+    Diagnostico VARCHAR(255),
+    Preco DECIMAL(10,2),
+    Pago BOOLEAN,
+    PRIMARY KEY (CodPac, DataHora),
+    FOREIGN KEY (CodPac) REFERENCES Paciente(CodPac),
+    FOREIGN KEY (CodMed) REFERENCES Medico(CodMedico)
+);
+
+CREATE TABLE Receita (
+    CodPac INT,
+    DataHora DATETIME,
+    CodMedic INT,
+    Qtde INT,
+    PRIMARY KEY (CodPac, DataHora, CodMedic),
+    FOREIGN KEY (CodPac, DataHora) REFERENCES Consulta(CodPac, DataHora),
+    FOREIGN KEY (CodMedic) REFERENCES Medicamento(CodMedic)
+);
